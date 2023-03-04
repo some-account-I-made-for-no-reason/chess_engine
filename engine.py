@@ -58,14 +58,16 @@ piece_square_tables = {
         -10, 0, 5, 0, 0, 0, 0, -10,
         -20, -10, -10, -5, -5, -10, -10, -20
     ],
-    chess.KING:[-30,-40,-40,-50,-50,-40,-40,-30,
--30,-40,-40,-50,-50,-40,-40,-30,
--30,-40,-40,-50,-50,-40,-40,-30,
--30,-40,-40,-50,-50,-40,-40,-30,
--20,-30,-30,-40,-40,-30,-30,-20,
--10,-20,-20,-20,-20,-20,-20,-10,
- 20, 20,  0,  0,  0,  0, 20, 20,
- 20, 30, 10,  0,  0, 10, 30, 20]}
+    chess.KING:[
+        -30,-40,-40,-50,-50,-40,-40,-30,
+        -30,-40,-40,-50,-50,-40,-40,-30,
+        -30,-40,-40,-50,-50,-40,-40,-30,
+        -30,-40,-40,-50,-50,-40,-40,-30,
+        -20,-30,-30,-40,-40,-30,-30,-20,
+        -10,-20,-20,-20,-20,-20,-20,-10,
+        20, 20,  0,  0,  0,  0, 20, 20,
+        20, 30, 10,  0,  0, 10, 30, 20]
+    }
 center_control_tables = {
     chess.A1 : 1,
     chess.A2 : 1,
@@ -102,8 +104,8 @@ center_control_tables = {
     chess.E1 : 10,
     chess.E2 : 10,
     chess.E3 : 3,
-    chess.E4 : 10,
-    chess.E5 : 10,
+    chess.E4 : 11,
+    chess.E5 : 11,
     chess.E6 : 3,
     chess.E7 : 10,
     chess.E8 : 10,
@@ -130,9 +132,8 @@ center_control_tables = {
     chess.H5 : 1,
     chess.H6 : 1,
     chess.H7 : 1,
-    chess.H8 : 1,
+    chess.H8 : 1
 }
-
 pawn_structure_tables = {
     chess.A1: -10, chess.A2: -10, chess.A3: 0, chess.A4: 0, chess.A5: 5, chess.A6: 0, chess.A7: -10, chess.A8: -10,
     chess.B1: -5, chess.B2: -5, chess.B3: 0, chess.B4: 3, chess.B5: 5, chess.B6: 0, chess.B7: -5, chess.B8: -5,
@@ -141,7 +142,7 @@ pawn_structure_tables = {
     chess.E1: 5, chess.E2: 5, chess.E3: 0, chess.E4: 5, chess.E5: 7, chess.E6: 0, chess.E7: 5, chess.E8: 5,
     chess.F1: 0, chess.F2: 0, chess.F3: 0, chess.F4: 4, chess.F5: 6, chess.F6: 0, chess.F7: 0, chess.F8: 0,
     chess.G1: -5, chess.G2: -5, chess.G3: 0, chess.G4: 3, chess.G5: 5, chess.G6: 0, chess.G7: -5, chess.G8: -5,
-    chess.H1: -10, chess.H2: -10, chess.H3: 0, chess.H4: 0, chess.H5: 5, chess.H6: 0, chess.H7: -10, chess.H8: -10,
+    chess.H1: -10, chess.H2: -10, chess.H3: 0, chess.H4: 0, chess.H5: 5, chess.H6: 0, chess.H7: -10, chess.H8: -10
 }
 king_safety_tables = {
     chess.A1: 0, chess.B1: 0, chess.C1: 0, chess.D1: 1,
@@ -159,9 +160,10 @@ king_safety_tables = {
     chess.A7: 6, chess.B7: 6, chess.C7: 6, chess.D7: 6,
     chess.E7: 6, chess.F7: 6, chess.G7: 6, chess.H7: 6,
     chess.A8: 7, chess.B8: 7, chess.C8: 7, chess.D8: 8,
-    chess.E8: 9, chess.F8: 7, chess.G8: 7, chess.H8: 7,
+    chess.E8: 9, chess.F8: 7, chess.G8: 7, chess.H8: 7
 }
 endgame_tables = {
+
     chess.A1: 0, chess.B1: 0, chess.C1: 0, chess.D1: 0, chess.E1: 0, chess.F1: 0, chess.G1: 0, chess.H1: 0,
     chess.A2: 5, chess.B2: 10, chess.C2: 10, chess.D2: 10, chess.E2: 10, chess.F2: 10, chess.G2: 10, chess.H2: 5,
     chess.A3: 4, chess.B3: 8, chess.C3: 8, chess.D3: 8, chess.E3: 8, chess.F3: 8, chess.G3: 8, chess.H3: 4,
@@ -169,8 +171,9 @@ endgame_tables = {
     chess.A5: 2, chess.B5: 4, chess.C5: 4, chess.D5: 4, chess.E5: 4, chess.F5: 4, chess.G5: 4, chess.H5: 2,
     chess.A6: 1, chess.B6: 2, chess.C6: 2, chess.D6: 2, chess.E6: 2, chess.F6: 2, chess.G6: 2, chess.H6: 1,
     chess.A7: 0, chess.B7: 0, chess.C7: 0, chess.D7: 0, chess.E7: 0, chess.F7: 0, chess.G7: 0, chess.H7: 0,
-    chess.A8: 0, chess.B8: 0, chess.C8: 0, chess.D8: 0, chess.E8: 0, chess.F8: 0, chess.G8: 0, chess.H8: 0,
+    chess.A8: 0, chess.B8: 0, chess.C8: 0, chess.D8: 0, chess.E8: 0, chess.F8: 0, chess.G8: 0, chess.H8: 0
 }
+
 weight_pawn_structure = 1.0
 weight_king_safety = 1.0
 weight_mobility = 0.5
@@ -216,7 +219,7 @@ def evaluate(position):
     # Pawn structure score
     own_pawns = position.pieces(chess.PAWN, position.turn)
     own_pawn_files = [chess.square_file(square) for square in own_pawns]
-    pawn_structure_score = sum([pawn_structure_tables[square] for square in own_pawn_files])
+    pawn_structure_score = sum(pawn_structure_tables[square] for square in own_pawn_files)
     total_evaluation += pawn_structure_score * weight_pawn_structure / 10
 
     # Mobility score
@@ -227,8 +230,8 @@ def evaluate(position):
     total_evaluation += mobility_score
 
     # Center control score
-    own_center_control = sum([1 for square in center_control_tables if position.attackers(position.turn, square)])
-    opponent_center_control = sum([1 for square in center_control_tables if position.attackers(not position.turn, square)])
+    own_center_control = sum(1 for square in center_control_tables if position.attackers(position.turn, square))
+    opponent_center_control = sum(1 for square in center_control_tables if position.attackers(not position.turn, square))
     center_control_score = (center_control_tables[own_center_control] - center_control_tables[opponent_center_control]) * weight_center_control / 10
     total_evaluation += center_control_score
 
@@ -238,131 +241,216 @@ def evaluate(position):
     if abs(total_evaluation) <= endgame_threshold:
         own_pawns = position.pieces(chess.PAWN, position.turn)
         opponent_pawns = position.pieces(chess.PAWN, not position.turn)
-        if len(own_pawns) <= 1 and len(opponent_pawns) <= 1:
+        if len(own_pawns) <= 3 and len(opponent_pawns) <= 3:
             endgame_score = (endgame_tables[own_center_control] - endgame_tables[opponent_center_control]) * weight_endgame / 10
     total_evaluation += endgame_score
 
     return total_evaluation
 
-def iterative_deepening_search(position, max_depth=4):
-    best_move = None
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        for depth in range(1, max_depth+1):
-            future = executor.submit(minimax_search, position, depth)
-            try:
-                best_move = future.result(timeout=1.0)
-            except concurrent.futures.TimeoutError:
-                pass
-    return best_move
 
-def minimax_search(position, depth, maximizing_player=True):
-    if depth == 0 or position.is_terminal():
-        return position.evaluate(), None
+def move_ordering(board):
+    """Orders a list of moves based on the most promising first.
 
-    best_score = float('-inf') if maximizing_player else float('inf')
-    best_move = None
+    Args:
+        board (chess.Board): The current state of the chess board.
 
-    for move in position.get_legal_moves():
-        position.make_move(move)
-        score, _ = minimax_search(position, depth - 1, not maximizing_player)
-        position.undo_move(move)
+    Returns:
+        list: The ordered list of moves represented as strings.
+    """
+    moves = list(board.legal_moves)
+    ordered_moves = []
+    capture_moves = []
+    pawn_moves = []
+    king_moves = []
+    queen_moves = []
+    rook_moves = []
+    bishop_moves = []
+    knight_moves = []
 
-        if maximizing_player and score > best_score:
-            best_score = score
-            best_move = move
-        elif not maximizing_player and score < best_score:
-            best_score = score
-            best_move = move
+    # Initialize bitboards for each piece type
+    pawn_bb = board.pieces_mask(chess.PAWN, board.turn)
+    king_bb = board.pieces_mask(chess.KING, board.turn)
+    queen_bb = board.pieces_mask(chess.QUEEN, board.turn)
+    rook_bb = board.pieces_mask(chess.ROOK, board.turn)
+    bishop_bb = board.pieces_mask(chess.BISHOP, board.turn)
+    knight_bb = board.pieces_mask(chess.KNIGHT, board.turn)
 
-    return best_score, best_move
+    for move in moves:
+        try:
+            # Get the type and position of the moving piece
+            from_sq = move.from_square
+            piece_type = board.piece_type_at(from_sq)
 
-def move_ordering(position) :
-    """Returns a list of legal moves in order of increasing value"""
-    legal_moves = list(position.legal_moves)
-    legal_moves.sort(key=lambda move : evaluate(position.copy().push(move)))
-    return legal_moves
+            # Use bitboards to prioritize moves
+            if board.is_capture(move):
+                capture_moves.append(move.uci())
+            elif piece_type == chess.QUEEN:
+                if queen_bb & (1 << from_sq):
+                    queen_moves.append(move.uci())
+            elif piece_type == chess.ROOK:
+                if rook_bb & (1 << from_sq):
+                    rook_moves.append(move.uci())
+            elif piece_type == chess.BISHOP:
+                if bishop_bb & (1 << from_sq):
+                    bishop_moves.append(move.uci())
+            elif piece_type == chess.KNIGHT:
+                if knight_bb & (1 << from_sq):
+                    knight_moves.append(move.uci())
+            elif piece_type == chess.PAWN:
+                if pawn_bb & (1 << from_sq):
+                    pawn_moves.append(move.uci())
+            elif piece_type == chess.KING:
+                if king_bb & (1 << from_sq):
+                    king_moves.append(move.uci())
+        except Exception:
+            continue
 
-def alphabeta(position, depth, alpha= float('-inf'), beta= float('inf'), null_window=1, use_lmr=True, use_null=True, use_parallel=True, pool=None):
-    """Returns [eval, best move] for the position at the given depth"""
-    if depth == 0 or position.is_game_over():
-        return [evaluate(position), None]
+    # Order the moves based on the most promising first
+    ordered_moves.extend(capture_moves)
+    ordered_moves.extend([move for move in queen_moves if move[2:].isdigit()])
+    ordered_moves.extend([move for move in rook_moves if move[2:].isdigit()])
+    ordered_moves.extend([move for move in bishop_moves if move[2:].isdigit()])
+    ordered_moves.extend([move for move in knight_moves if move[2:].isdigit()])
+    ordered_moves.extend(pawn_moves)
+    ordered_moves.extend([move for move in king_moves if move[2:].isdigit()])
 
-    legal_moves = move_ordering(position)
+    return ordered_moves
 
-    best_score = -float('inf')
-    best_move = None
 
-    if use_null and depth > 2 and not position.is_check():
-        position.push(chess.Move.null())
-        score = -alphabeta(position, depth - 3, -beta, -beta + 1, null_window, False, False, False, None)[0]
-        position.pop()
-        if score >= beta:
-            return [beta, None]
+def evaluate_move(move, board):
+    board.push(move)
+    score = evaluate(board)
+    board.pop()
+    return score
 
-    if use_lmr and depth > 1 and not position.is_check() and best_move is not None and not position.is_capture(best_move) :
-        reduction = 1
-        if len(legal_moves) >= 10:
-            reduction = 2
-        for i, move in enumerate(legal_moves):
-            if i < 3:
-                score, _ = alphabeta(position.copy().push(move), depth - 1 - reduction, -beta, -alpha, None, False, False, False, None)
-            else:
-                score, _ = alphabeta(position.copy().push(move), depth - 1 - reduction, -alpha - 1, -alpha, None, False, False, False, None)
-                if score > alpha:
-                    score, _ = alphabeta(position.copy().push(move), depth - 1, -beta, -alpha, None, False, False, False, None)
-            score = -score
-            if score >= beta:
-                return [beta, None]
+def search_best_move(board, depth):
+    """Searches for the best move using bitboards and a single thread.
+
+    Args:
+        board (chess.Board): The current state of the chess board.
+        depth (int): The depth to search.
+
+    Returns:
+        str: The best move represented as a string.
+    """
+    if board is not None:
+        moves = move_ordering(board)
+        num_moves = len(moves)
+
+        # Evaluate each move and store its score in a list
+        scores = [0] * num_moves
+        for i in range(num_moves):
+            move = moves[i]
+            board.push(chess.Move.from_uci(move))
+            score = -alphabeta(board, depth-1, -100000, 100000, False)
+            board.pop()
+            scores[i] = score
+
+        # Sort the moves by score and return the best move
+        best_index = max(range(num_moves), key=scores.__getitem__)
+        best_move = moves[best_index]
+        return best_move
+
+def alphabeta(board, depth, alpha=-float('inf'), beta=float('inf'), maximizing_player=True, bitboards=None, transposition_table=None):
+    if bitboards is None:
+        bitboards = get_bitboard(board)
+
+    if transposition_table is None:
+        transposition_table = {}
+
+    # Check transposition table
+    transposition_key = (board.fen(), depth, alpha, beta)
+    if transposition_key in transposition_table:
+        return transposition_table[transposition_key]
+
+    # Check for quiet position
+    if not board.is_check():
+        quiescence_score = quiescent(board, alpha, beta)
+        if quiescence_score is not None:
+            transposition_table[transposition_key] = quiescence_score
+            return quiescence_score
+
+    # Evaluate position if depth is zero or game is over
+    if depth == 0 or board.is_game_over():
+        eval_score = evaluate(board, bitboards)
+        transposition_table[transposition_key] = eval_score
+        return eval_score
+
+    # Use move ordering
+    moves = move_ordering(board)
+
+    # Perform alpha-beta search
+    if maximizing_player:
+        best_score = -float('inf')
+        for move in moves:
+            board.push(chess.Move.from_uci(move))
+            score = alphabeta(board, depth-1, alpha, beta, False, bitboards, transposition_table)
+            board.pop()
             if score > best_score:
                 best_score = score
                 best_move = move
             alpha = max(alpha, score)
-
+            if beta <= alpha:
+                break
+        transposition_table[transposition_key] = best_score
+        return best_move
     else:
-        if use_parallel and depth > 1:
-            with concurrent.futures.ProcessPoolExecutor(max_workers=4) as pool:
-                results = [
-                    pool.submit(alphabeta, position.copy().push(move), depth - 1, -beta, -alpha, null_window, use_lmr,
-                                use_null, use_parallel, None) for move in legal_moves]
-                for result in concurrent.futures.as_completed(results):
-                    score, move_ = result.result()
-                    score = -score
-                    if score > alpha:  # player maximizes his score
-                        alpha = score
-                        best_move = move_
-                        if alpha >= beta:  # alpha-beta cutoff
-                            break
+        best_score = float('inf')
+        for move in moves:
+            board.push(chess.Move.from_uci(move))
+            score = alphabeta(board, depth-1, alpha, beta, True, bitboards, transposition_table)
+            board.pop()
+            if score < best_score:
+                best_score = score
+                best_move = move
+            beta = min(beta, score)
+            if beta <= alpha:
+                break
+        transposition_table[transposition_key] = best_score
+        return best_move
 
-            best_score = alpha
-        else:
-            for move in legal_moves:
-                score, _ = alphabeta(position.copy().push(move), depth - 1, -beta, -alpha, None, False, False, False, None)
-                score = -score
-                if score >= beta:
-                    return [beta, None]
-                if score > best_score:
-                    best_score = score
-                    best_move = move
-                alpha = max(alpha, score)
 
-    return [best_score, best_move]
+def quiescent(position, alpha, beta):
+    """Returns the quiescent search score of the position"""
+    stand_pat = evaluate(position)
+    if stand_pat >= beta:
+        return beta
+    if alpha < stand_pat:
+        alpha = stand_pat
+
+    for move in position.legal_moves:
+        if position.is_capture(move):
+            capture_score = evaluate(position, move)
+            if capture_score >= beta:
+                return beta
+            if capture_score > alpha:
+                alpha = capture_score
+
+    return alpha
+
+
+def get_bitboard(board):
+    """Returns bitboards for each piece color"""
+    return {(color, piece_type): board.pieces(piece_type, color)
+            for color in [chess.WHITE, chess.BLACK]
+            for piece_type in [chess.PAWN, chess.KNIGHT, chess.BISHOP, chess.ROOK, chess.QUEEN, chess.KING]}
+
 
 fen_ = input('Enter fen: ')
 board = chess.Board(fen_)
 _depth = int(input('Enter depth: '))
+game_board = display.start()
 
 while True:
-    game_board = display.start()
+    display.update(board.fen(), game_board)
     if not board.is_game_over():
-            display.update(board.fen(), game_board)
-            x = {True : "White's turn", False : "Black's turn"}
-            move = input('Enter move:')
-            board.push_san(str(move))
-            engine = alphabeta(board, _depth)
-            board.push(engine[1])
-            print(f"{board}\n", f"Evaluation: {-engine[0]/100}", f"Best move: {engine[1]}", f"Fen: {board.fen()}", sep='\n')
-            display.update(board.fen(), game_board)
-            display.check_for_quit()
+        move = input('Enter move:')
+        board.push_san(str(move))
+        engine = alphabeta(board, _depth)
+        board.push(engine)
+        print(f"{board}\nEvaluation: {-engine[0]/100}\nBest move: {engine[1]}\nFen: {board.fen()}")
+        display.update(board.fen(), game_board)
+        display.check_for_quit()
     else:
         print(f'Game over\nResult: {board.result()}')
         break
